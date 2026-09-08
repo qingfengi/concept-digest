@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Concept Digest 设置</title><link rel="stylesheet" href="panel.css"></head>
+<body class="options-page"><header><h1>模型服务设置</h1></header><main>
+  <form id="settings-form"><label for="base-url">服务地址（OpenAI 兼容）</label><input id="base-url" type="url" required autocomplete="off"><label for="model">模型名称</label><input id="model" required maxlength="200" autocomplete="off"><label for="api-key">API 密钥</label><input id="api-key" type="password" autocomplete="new-password"><label class="checkbox"><input type="checkbox" id="clear-key">移除已保存的密钥</label><button class="primary" id="save" type="submit">保存设置</button></form>
+  <p id="status" role="status"></p><p class="muted">设置和概念树保存在本机扩展存储中，不同步到云端。浏览器存储不是系统加密保险库。只有点击解释时，概念与路径才发送到你配置的服务。</p>
+</main><script src="options.js"></script></body></html>

@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Concept Digest</title><link rel="stylesheet" href="panel.css"></head>
+<body>
+  <header><h1>概念树</h1><button id="settings" type="button">设置</button></header>
+  <main>
+    <form id="concept-form"><label for="concept">想理解的概念</label><input id="concept" maxlength="200" required autocomplete="off" placeholder="输入概念或读取网页选词"><div class="actions"><button id="selection" type="button">读取网页选词</button><button id="explain" type="submit" class="primary">解释并保存</button></div></form>
+    <p id="status" role="status"></p>
+    <section id="detail" hidden><div class="section-heading"><h2 id="name"></h2><button id="delete" type="button">删除</button></div><p id="summary"></p><h3>继续理解</h3><div id="related"></div></section>
+    <section><div class="section-heading"><h2>已保存的概念</h2><div class="actions"><button id="refresh" type="button" aria-label="刷新概念树">刷新</button><button id="export" type="button">导出</button></div></div><div id="tree"></div></section>
+  </main><script src="sidepanel.js"></script>
+</body></html>

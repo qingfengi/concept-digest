@@ -1,0 +1,10 @@
+{
+  "name": "concept-digest",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "check": "node --check background.js && node --check sidepanel.js && node --check options.js && node --check content.js",
+    "test": "node --test test/*.test.cjs"
+  },
+  "engines": { "node": ">=22" }
+}
