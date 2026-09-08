@@ -94,8 +94,14 @@ async function callAI(concept, path) {
   try {
     const data = await response.json();
     const content = data?.choices?.[0]?.message?.content;
-    if (typeof content !== 'string') throw new Error();
-    parsed = JSON.parse(content.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, ''));
+    // OpenAI-compatible providers may return either a string or text parts.
+    const text = typeof content === 'string'
+      ? content
+      : Array.isArray(content)
+        ? content.filter((part) => part && typeof part.text === 'string').map((part) => part.text).join('')
+        : '';
+    if (!text.trim()) throw new Error();
+    parsed = JSON.parse(text.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, ''));
   } catch { throw new Error('AI 返回的 JSON 无效，记录尚未保存'); }
   if (!parsed || typeof parsed !== 'object' || typeof parsed.explanation !== 'string' || !parsed.explanation.trim() || parsed.explanation.length > 12000 || !Array.isArray(parsed.concepts)) throw new Error('AI 返回缺少有效的解释或概念列表');
   const seen = new Set([...path, concept]);

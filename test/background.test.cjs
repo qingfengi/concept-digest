@@ -83,6 +83,15 @@ test('invalid model JSON does not create empty records', async () => {
   }
 });
 
+test('accepts text-part arrays from OpenAI-compatible model responses', async () => {
+  const f = fixture({ fetcher: async () => ({ ok: true, json: async () => ({ choices: [{ message: {
+    content: [{ type: 'text', text: '{"explanation":"array response","concepts":[' }, { type: 'text', text: '{"name":"child","why":"related"}]}' }]
+  } }] }) }) });
+  const result = await f.request({ type: 'explain', concept: 'array' });
+  assert.equal(result.ok, true);
+  assert.equal(result.data.node.summary, 'array response');
+});
+
 test('settings API masks secrets and keeps existing key on masked save', async () => {
   const f = fixture();
   const settings = (await f.request({ type: 'getSettings' })).data;
